@@ -1,0 +1,32 @@
+PARA CONFIGURAR LA PC
+git config --global user.name "Juan Perez"
+git config --global user.email "juan.perez@ejemplo.com"
+
+CREAR REPOSITORIO EN LA DIRECCION ACTUAL
+git init
+
+ESTADO DEL REPO
+git status
+
+AGREGAR TODOS LOS ARCHIVOS
+git add .
+
+CONFIRMAMOS LA OPERACION -COMMIT-
+git commit -m
+
+PARA CAMBIOS EN ARCHIVOS YA SUBIDOS
+git commit -am "mensaje del commit"
+git commit -am "subida despues del push"
+
+CUENTA DE GITHUB
+AlejandroCopp
+
+AGREGAR UN NUEVO REMOTE
+git remote add origin https://github.com/AlejandroCopp/Diplomatura-React-JS.git
+
+ENVIA O PUSHEA A ORIGIN LOS CAMBIOS DE LA BRANCH
+git push -u origin master
+
+
+
+
