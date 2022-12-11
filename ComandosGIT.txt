@@ -12,7 +12,7 @@ AGREGAR TODOS LOS ARCHIVOS
 git add .
 
 CONFIRMAMOS LA OPERACION -COMMIT-
-git commit -m
+git commit -m ""
 
 PARA CAMBIOS EN ARCHIVOS YA SUBIDOS
 git commit -am "mensaje del commit"
@@ -27,6 +27,10 @@ git remote add origin https://github.com/AlejandroCopp/Diplomatura-React-JS.git
 ENVIA O PUSHEA A ORIGIN LOS CAMBIOS DE LA BRANCH
 git push -u origin master
 
+REMOVER ARCHIVO--luego commit el cambio
+git rm archivo.txt
 
+RENOMBRAR ARCHIVO--luego commit el cambio	
+git mv archivo1 archivo2
 
 
