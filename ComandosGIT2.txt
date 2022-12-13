@@ -1,0 +1,66 @@
+PARA CONFIGURAR LA PC
+git config --global user.name "Juan Perez"
+git config --global user.email "juan.perez@ejemplo.com"
+
+CREAR REPOSITORIO EN LA DIRECCION ACTUAL
+git init
+
+ESTADO DEL REPO
+git status
+
+AGREGAR TODOS LOS ARCHIVOS
+git add .
+
+CONFIRMAMOS LA OPERACION -COMMIT-
+git commit -m ""
+
+PARA CAMBIOS EN ARCHIVOS YA SUBIDOS
+git commit -am "mensaje del commit"
+git commit -am "subida despues del push"
+
+CUENTA DE GITHUB
+AlejandroCopp
+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
+
+--------------------------------------------
+AGREGAR UN NUEVO REMOTE
+git remote add origin https://github.com/AlejandroCopp/Diplomatura-React-JS.git
+
+VER LA REFERENCIA Y EL REMOTE
+git remote -v
+
+ELIMINAR LA REFERENCIA DEL REMOTE
+git remote rm origin          (origin es el nombre de la refernecia)
+
+---------------------------------------------
+
+ENVIA O PUSHEA A ORIGIN LOS CAMBIOS DE LA BRANCH
+git push -u origin master
+
+REMOVER ARCHIVO--luego commit el cambio
+git rm archivo.txt
+
+RENOMBRAR ARCHIVO--luego commit el cambio	
+git mv archivo1 archivo2
+
+----------------------------------------------
+MOSTRAR BRABCH LOCAL
+git branch 
+
+MOSTRAR BRANCH REMOTAS
+git branch -r
+
+ELIMINAR UNA BRANCH LOCAL
+git branch -d nombreRama
+
+ELIMINAR UNA BRANCH REMOTA
+git pushorigin --delete nombreRama
+
+CREAR A UNA BRANCH
+git checkout -b nombrederama
+
+CAMBIAR DE BRANCH
+git checkout nombrederama
+
+
+
