@@ -14,6 +14,15 @@ git add .
 CONFIRMAMOS LA OPERACION -COMMIT-
 git commit -m ""
 
+LISTADO EN LA CARPETA LOCAL
+LS
+
+CREAR CARPETAS
+mkdir nombrecarpeta
+
+RENOMBRAR ARCHIVOS
+git mv archivo archivorenombrado
+
 PARA CAMBIOS EN ARCHIVOS YA SUBIDOS
 git commit -am "mensaje del commit"
 git commit -am "subida despues del push"
@@ -35,9 +44,9 @@ git remote rm origin          (origin es el nombre de la refernecia)
 ---------------------------------------------
 
 ENVIA O PUSHEA A ORIGIN LOS CAMBIOS DE LA BRANCH
-git push -u origin master
+git push -u origin master (o main)
 
-REMOVER ARCHIVO--luego commit el cambio
+REMOVER ARCHIVO--lgit uego commit el cambio
 git rm archivo.txt
 
 RENOMBRAR ARCHIVO--luego commit el cambio	
@@ -61,6 +70,9 @@ git checkout -b nombrederama
 
 CAMBIAR DE BRANCH
 git checkout nombrederama
+
+Como se dificulto borrar la rama "main" que esta por defecto con github, pase los archivos de la "master" 
+que se crea por defecto con git para intentar posteriormente borrarla asi trabajar con una sola rama por ahora 
 
 
 
