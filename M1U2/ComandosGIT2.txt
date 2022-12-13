@@ -74,5 +74,5 @@ git checkout nombrederama
 Como se dificulto borrar la rama "main" que esta por defecto con github, pase los archivos de la "master" 
 que se crea por defecto con git para intentar posteriormente borrarla asi trabajar con una sola rama por ahora 
 
-
+Nota. Git solo detecta las carpetas cuanco tienen algun contenido
 
