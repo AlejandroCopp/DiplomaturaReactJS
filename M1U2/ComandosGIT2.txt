@@ -71,6 +71,14 @@ git checkout -b nombrederama
 CAMBIAR DE BRANCH
 git checkout nombrederama
 
+DESCARGAR UNA BRANCH AL LOCAL
+git clone linkdelabranch
+
+FUSIONAR BRANCH REMOTA -no funciona
+git merge nombrederepo branch
+
+-----------------------------
+
 Como se dificulto borrar la rama "main" que esta por defecto con github, pase los archivos de la "master" 
 que se crea por defecto con git para intentar posteriormente borrarla asi trabajar con una sola rama por ahora 
 
