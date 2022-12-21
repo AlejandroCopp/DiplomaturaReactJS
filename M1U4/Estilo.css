@@ -1,0 +1,52 @@
+.container {
+    background-color: wheat;
+    width: 80%;
+    margin-left: 8%;
+    transition: background-color 5s;
+
+}
+.container:hover{
+    background-color: rgb(169, 229, 247);
+
+}
+
+
+h1 {
+    display: flex;
+    justify-content: center;
+
+}
+ img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+ }
+
+ .destacado {
+    font-weight: bold;
+    text-decoration: underline;
+ }
+
+ .deg{
+    transition: background-color .5s;
+ }
+
+ .deg:hover {
+    background-color: gold;
+}
+
+li{
+    transition: background-color .5s;
+ }
+
+ li:hover {
+    background-color: gold;
+}
+
+h4{
+    transition: background-color .5s;
+}
+
+h4:hover {
+    background-color: gold;
+}
