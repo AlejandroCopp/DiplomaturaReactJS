@@ -2,14 +2,18 @@
     background-color: wheat;
     width: 80%;
     margin-left: 8%;
-    transition: background-color 5s;
+    transition: background-color 8s;
 
 }
 .container:hover{
-    background-color: rgb(169, 229, 247);
+    background-color: rgb(169, 247, 247);
 
 }
 
+body {
+    background-color: rgb(255, 255, 255);
+
+}
 
 h1 {
     display: flex;
