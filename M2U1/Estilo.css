@@ -1,0 +1,87 @@
+.container {
+    background-color: rgba(253, 253, 253, 0.158);
+    width: 80%;
+    margin-left: 8%;
+    transition: background-color 2s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.533);
+    padding: 20px;
+    font-family: 'EB Garamond', serif;
+    
+}
+.container:hover{
+    background-color: rgba(253, 253, 253, 0.658);
+}
+
+.container2{
+   text-align: center;
+
+}
+
+
+body {
+    background: linear-gradient(to bottom, rgba(235, 238, 250, 0.678) 17%,rgba(35,83,138,1) 77%);}
+
+h1 {
+   
+    display: flex;
+    justify-content: center;
+
+}
+ img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+ }
+
+ .destacado {
+    font-weight: bold;
+    text-decoration: underline;
+ }
+
+ .deg{
+    transition: background-color .5s;
+ }
+
+ .deg:hover {
+    background-color: gold;
+}
+
+li{
+    transition: background-color .5s;
+ }
+
+ li:hover {
+    background-color: gold;
+}
+
+h4{
+    transition: background-color .5s;
+    columns: 2;
+    column-gap: 20px;
+}
+
+h4:hover {
+    background-color: gold;
+}
+
+.box{
+    width: 100px;
+    height: 30px;
+    background-color: rgb(152, 255, 241);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.822);
+    border-radius: 20px;
+    /* para centrar un texto en un contenedor tanto horizontal como vertical : */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40%;
+}
+
+.box:hover {
+    background-color: rgb(5, 255, 172);
+}
+
+
+ul{
+    list-style: none;
+}
