@@ -1,0 +1,41 @@
+#contenedor {
+    border: 3px solid rgb(15, 15, 15);
+    background-color: rgb(224, 224, 224);
+    position: static;
+    width: 60%;
+    height: 500px;
+    margin: 0 auto; /* es para centrar el contenedor*/
+}
+
+#verde {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 20%;
+    width: 94%;
+    border: 3px solid #32431e;
+    margin-bottom: 20px; /* separacion con el elemento inferior */
+    background-color: #80BC3A;
+    margin: 0 auto; 
+}
+
+#celeste {
+    position: static;
+    height: 20%;
+    width: 94%;
+    border: 3px solid #2f2570;
+    margin-bottom: 20px; /* separacion con el elemento inferior */
+    background-color: #92b2e3;
+    margin: 0 auto; 
+}
+
+#amarillo {
+    position: static;
+    height: 20%;
+    width: 94%;
+    border: 3px solid #6d7025;
+    margin-bottom: 20px; /* separacion con el elemento inferior */
+    background-color: #e3e292;
+    margin: 0 auto; 
+}
+

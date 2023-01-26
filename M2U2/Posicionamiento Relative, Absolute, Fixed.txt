@@ -1,0 +1,15 @@
+CSS define cinco formas de posicionar:
+
+Static: 
+El que viene por defecto en el navegador
+
+Relative: 
+Se dezplasa con respecto a la posicion original 
+
+Absolute: 
+Se establece una poscion absoluta con respecto a su contenedor e independiente del resto de los objetos.
+Siempre busca un relativo padre (body tiene relativo por defecto)
+Pero hasta que no se le da una posicion al objeto absoluto no se ubica con respecto al relativo padre 
+
+Fixed: 
+Hace inamovible el elemento, tambien al hacer scrol
