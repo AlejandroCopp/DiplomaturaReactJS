@@ -1,0 +1,18 @@
+div {
+    width: 200px;
+    height: 200px;
+    background-color: beige;
+    cursor: pointer;
+}
+
+div:hover {
+    background-color: aquamarine;
+}
+
+div::before {
+    content: "۞";
+}
+
+::placeholder {
+    color: rgb(134, 179, 141);
+}
