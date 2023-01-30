@@ -13,3 +13,7 @@ Pero hasta que no se le da una posicion al objeto absoluto no se ubica con respe
 
 Fixed: 
 Hace inamovible el elemento, tambien al hacer scrol
+
+
+
+Que el posicionamiento sea ESTATICO o RELATIVO en lo que mas influye es donde valla a quedar el elemento hijo absoluto, si su contenedor es estatico lo va a saltear, si es relativo se posicionara acorde a el una vez dadas las indicaciones especificas
