@@ -3,8 +3,19 @@ body{
 }
 .container {
     background-color: rgb(91, 192, 190);
+    /* border: 1px solid black; */
+
 }
 
 .h3{
     padding-bottom: 5px;
+}
+
+.row{
+    /* border: 1px solid black; */
+
+}
+.col{
+    /* border: 1px solid rgb(255, 0, 0); */
+
 }
