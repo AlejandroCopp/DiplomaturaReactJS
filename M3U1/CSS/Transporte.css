@@ -84,8 +84,12 @@ h2 {
 .bienvenidos {
     width: 75%;
     padding-right: 10px;
+    margin-top: 20px;
     box-sizing: border-box;
-    background-color: bisque;
+    background-color: #f4f9fd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
 }
 
 .testimonios {
@@ -105,6 +109,10 @@ h2 {
 .testimonios {
     background-color: #ccc;
     padding: 16px;
+    margin-top: 20px;
+    margin-left: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .testimonios .cita{
@@ -130,5 +138,90 @@ h2 {
 /* inicio de personas */
 
 .historia p {
+    font-size: 12px;
+}
+
+
+.persona {
+    
+    width: 18%;
+    text-align: center;
+    padding: 13px;
+    box-sizing: border-box;
+    background-color: #f4f9fd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.personas {
+    display: flex;
+    justify-content: space-around;
     
 }
+
+
+.personas :hover{
+    background-color: #cbe2f8;
+    transition-duration: 0.5s;
+}  
+
+
+.persona img{
+    border-radius: 50%;
+    max-width: 60%;
+    box-shadow: 0 0 5px black;
+}
+
+.persona h6{
+    margin: 0;
+    font-weight: normal;
+    color: #2e64a1;
+
+}
+.persona p{
+    color: rgb(53, 53, 53) ;
+    font-size: 10px;
+}
+/* fin de nosotros */
+
+/* inicio de servicios */
+
+.servicios {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 13px;
+    margin: 16px;
+    display: flex;
+    gap: 22px;  /*para separar el contenido */
+    background-color: #f4f9fd;
+    align-items: center;
+
+}
+
+.servicios .info h4{
+    color: #2e64a1;
+    font-weight: 500;
+    font-style: italic;
+    border-bottom: 1px solid #2e64a1;
+    padding-bottom: 10px;
+}
+
+servicios p{
+    font-size: 13px;
+}
+
+.servicios img{
+    border-radius: 15px;
+    display: block;
+    margin-left: 10px;
+}
+
+
+/* usando una pseudo clase cambiamos la direccion de los elementos en este caso de los pares */
+.servicios:nth-child(even){
+    flex-direction: row-reverse;
+}
+
+
+/* fin de servicios */
