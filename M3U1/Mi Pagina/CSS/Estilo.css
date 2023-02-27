@@ -1,0 +1,239 @@
+body {
+    font-family: 'EB Garamond', serif;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+ 
+header {
+    background-color: #000000;
+    padding: 10px 20px;
+}
+header img{
+    border-radius: 50px;
+
+}
+
+header h1 {
+    color: aliceblue;
+    font-size: 40px;
+    font-weight: 100;
+    font-style: italic;
+    display: inline-block;
+    position: relative;
+    bottom: 0px;
+    top: 10px;
+
+}
+/*
+nav {
+    background-color: rgb(113, 189, 189);
+    margin-bottom: 20px;
+
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+}
+
+nav ul li {
+    flex-grow: 1;
+}
+
+nav ul li a {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 5px 5px;
+    display: block;
+    text-align: center;
+
+}
+
+nav ul li a:hover {
+    background-color: rgb(59, 78, 74);
+
+} */
+
+footer {
+    background-color: rgb(0, 0, 0);
+    color: rgb(123, 115, 199);
+    text-align: center;
+    padding: 5px 5px;
+}
+
+nav ul li a.activo {
+    text-decoration: underline;
+    color: #2e64a1;
+    
+}
+
+.holder {
+    max-width: 1296px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: rgb(24, 17, 61);
+}
+
+
+/* inicio Home*/
+
+.bienvenidos {
+    width: 75%;
+    padding-right: 10px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    background-color: #f4f9fd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    
+}
+
+
+
+.card {
+    border-color: white;
+}
+.card .row img {
+    border-radius: 60px;
+    margin: 1px;
+    border: 1px solid rgb(8, 8, 8);
+}
+
+
+.findehome{
+    background-color: #000000;
+    color: white;
+    height: 200px;
+    margin-bottom: 0px;
+}
+
+
+/* fin de home */
+
+
+
+
+
+
+
+
+/* inicio de personas */
+
+.historia p {
+    font-size: 20px;
+}
+
+
+.persona {
+    
+    width: 30%;
+    text-align: center;
+    padding: 13px;
+    margin: 20px;
+    box-sizing: border-box;
+    background-color: #f4f9fd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.personas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+
+.personas :hover{
+    background-color: #cbe2f8;
+    transition-duration: 0.5s;
+}  
+
+
+.persona img{
+    border-radius: 50%;
+    max-width: 60%;
+    box-shadow: 0 0 5px black;
+    margin-bottom: 20px;  
+
+}
+
+.persona h6{
+    margin-bottom: 20px;  
+    font-weight: normal;
+    color: #2e64a1;
+
+}
+
+.persona h5{
+    margin-bottom: 20px;  
+
+}
+
+.persona p{
+    color: rgb(53, 53, 53) ;
+    font-size: 14px;
+}
+
+
+
+
+/* fin de nosotros */
+
+
+
+
+
+
+
+
+
+/* inicio de servicios */
+
+.servicios {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 13px;
+    margin: 16px;
+    display: flex;
+    gap: 22px;  /*para separar el contenido */
+    background-color: #f4f9fd;
+    align-items: center;
+
+}
+
+.servicios .info h4{
+    color: #2e64a1;
+    font-weight: 500;
+    font-style: italic;
+    border-bottom: 1px solid #2e64a1;
+    padding-bottom: 10px;
+}
+
+servicios p{
+    font-size: 13px;
+}
+
+.servicios img{
+    border-radius: 15px;
+    display: block;
+    margin-left: 10px;
+}
+
+
+/* usando una pseudo clase cambiamos la direccion de los elementos en este caso de los pares */
+.servicios:nth-child(even){
+    flex-direction: row-reverse;
+}
+
+
+/* fin de servicios */
