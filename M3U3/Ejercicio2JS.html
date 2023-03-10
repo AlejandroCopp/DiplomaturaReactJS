@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio2</title>
+</head>
+<body>
+    <script>
+
+        const numeros = [2,33,51,102,74,35,101]
+        let mayor = numeros[0]
+        for (let i = 0; i < numeros.length; i++) {
+             console.log("tenemos " + numeros[i])
+             
+             if (mayor<numeros[i]){
+                mayor=numeros[i]
+             }
+         }
+         console.log (numeros.length)
+         document.write ("El mayor es " + mayor)
+    </script>
+</body>
+</html>

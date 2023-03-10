@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1</title>
+</head>
+<body>
+    <script>
+
+        const distancia = parseInt (prompt("Ingrese la distancia"))
+        
+if ( distancia <= 1000){
+    document.write ("la distancia es menor o igual a 1000, camine" )
+}else if (distancia > 1000 && distancia <= 10000){
+    document.write ("la distancia menor o igual a 10000, valla en bicicleta")
+}else if (distancia > 10000 && distancia <= 30000){
+    document.write ("la distancia es menor o igual a 30000, valla en colectivo")
+}else if (distancia > 30000 && distancia <= 100000){
+    document.write ("la distancia es menor o igual a 100000, valla en auto")
+}else {
+    document.write("la distancia es mayor a 100000, valla en avion")
+}
+
+    </script>
+
+</body>
+</html>
