@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li class="item">Item1</li>
+        <li class="item">Item2</li>
+        <li class="item">Item3</li>
+        <li class="item">Item4</li>
+        <li class="item">Item5</li>
+    </ul>
+    <button onclick="cambiarVisibilidad(1)">Cambiar visibility item 2</button>
+    <button onclick="cambiarDisplay(3)">Cambiar display item 4</button>
+    
+    <script>
+        const items = document.getElementsByClassName("item")
+        function cambiarVisibilidad(numItem){
+            const item = items[numItem]
+            if (item.style.visibility == ""){
+                item.style.visibility = "hidden";
+            } else {
+                item.style.visibility = "";
+            }
+        }
+        function cambiarDisplay(numItem){
+            const item = items[numItem]
+            if (item.style.display == ""){
+                item.style.display = "none" ;
+            } else {
+                item.style.display = "";
+            }
+        }
+    </script>
+    
+</body>
+</html>
+
+<!-- 
+pongo a los botones a ejecutar las fucniones con paramentros dados
+Traigo los elementos de la lista al script por su class name 
+cada funcion almacena la posicion del item dada y cambia su estilo -->

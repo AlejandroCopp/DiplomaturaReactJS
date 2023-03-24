@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Link</h1>
+    <a id= "link" href="https://www.google.com">ir a google</a>
+    
+    <script>
+        const link = document.getElementById("link")
+        link.addEventListener("click", function(e){
+            e.preventDefault();
+            alert("quisiste ir a : "+ e.currentTarget.href);
+        })
+    </script>
+</body>
+</html>
+
+<!-- 
+la funcion preventDefault sirve para frenar la accion de elemento -->

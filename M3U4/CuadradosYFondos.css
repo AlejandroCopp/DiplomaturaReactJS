@@ -1,0 +1,18 @@
+.cont{
+    display: flex;
+}
+#c1{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
+#c2{
+    height: 100px;
+    width: 100px;
+    background-color: #336600;
+}
+#c3{
+    height: 100px;
+    width: 100px;
+    background-color: blue;
+}

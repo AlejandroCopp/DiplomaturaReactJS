@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <Script>
+
+
+
+
+        // -----------------Ejemplo de funcion----------------
+
+
+
+        // function suma_y_muestra() {
+        //     resultado = numero1 + numero2
+        //     alert("El resultado es " + resultado)
+        // }
+        // let resultado
+        // let numero1 = 3
+        // let numero2 = 5
+
+        // suma_y_muestra()
+
+        // numero1 = 10
+        // numero2 = 1
+
+        // suma_y_muestra()
+
+
+        // -----------------Ejemplo de funcion, con parametro----------------
+
+
+        // function saludar(nombre) {
+        //     alert("Hola " + nombre)
+        // }
+
+        // saludar("Pepito")
+        // saludar("Juancarlo")
+
+
+        // -----------------Ejemplo de funcion, con return----------------
+
+        // function numero_al_cubo(numero) {
+        //     return numero * numero * numero
+        // }
+        // var tres_al_cubo = numero_al_cubo(2)
+        // alert(tres_al_cubo)
+        // document.write (tres_al_cubo)
+
+
+        // -----------------Ejemplo de funcion, con vector----------------
+
+
+        // const numMes = parseInt(prompt("Ingrese el mes del año"))
+
+        // function listameses(mes) {
+
+        //     if (mes < 1 || mes > 12) return false; // 12 por los meses del año aunque en este array ahlla menos datos
+
+        //     mes--
+
+        //     if (Number.isNaN(mes)) return false
+
+
+        //     const data = [
+        //         {
+        //             nombre: "Enero",
+        //             dias: 31,
+        //         }
+        //         ,
+        //         {
+        //             nombre: "Febrero",
+        //             dias: 29,
+        //         }
+        //         ,
+        //         {
+        //             nombre: "Marzo",
+        //             dias: 27,
+        //         }
+
+        //     ]
+        //     return data[mes]
+        // }
+
+        // const resultado = listameses(numMes)
+        // document.write("El mes " + resultado.nombre, " tiene " + resultado.dias, " dias")
+
+        //  if (resultado)   {
+        //     alert ("El mes " + resultado.nombre +" tiene " + resultado.dias +" dias")
+        // } else{
+        //     alert ("El resultado es invalido")
+        // }
+
+
+
+        // -----------------Ejemplo de Validar un campo password----------------
+
+
+
+            function validarForm() {
+                const nombreValido = true
+                const passwordValido = validarLargo(document.form1.text1.value, 5)
+
+                const resultado = nombreValido && passwordValido;
+                
+                if (resultado) {
+                    alert("Es valido")
+                } else {
+                    alert("Es invalido")
+                }
+
+            }
+
+            function validarLargo(texto, LargoRequerido) {
+                return texto.length >= LargoRequerido
+            }
+
+
+        </Script>
+
+        <Form name="form1">
+            Ingrese clave (al menos 5 caracteres);
+            <input type="password" name="text1">
+            <input type="button" onclick="validarForm()" value="Enviar">
+        </Form>
+
+
