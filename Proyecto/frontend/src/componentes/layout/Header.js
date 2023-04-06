@@ -1,9 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "../../paginas/HomePage";
-import Galeria from "../../paginas/Galeria";
-import Nosotros from "../../paginas/Nosotros";
-import Contacto from "../../paginas/Contacto";
-import Nav from "./Nav";
+
+import "../../App.css";
+
 
 const Header = (props) => {
     return (
@@ -14,21 +12,11 @@ const Header = (props) => {
                     <h1>AC Design</h1>
                 </div>
             </div>
-
-            {/* <BrowserRouter>
-                <Nav />
-                <Routes>
-
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/nosotros" element={<Nosotros />} />
-                    <Route path="/Galeria" element={<Galeria />} />
-                    <Route path="/Contacto" element={<Contacto />} />
-
-                </Routes>
-            </BrowserRouter> */}
-            <div className="Holderimg">
-                <img className="img-fluid" src="img/banner.png" alt="" />
-            </div>
+            {/* <div class="container ">
+                <div className="Holderimg">
+                    <img className="img-fluid" src="img/banner.png" alt="" />
+                </div>
+            </div> */}
         </header>
     );
 }

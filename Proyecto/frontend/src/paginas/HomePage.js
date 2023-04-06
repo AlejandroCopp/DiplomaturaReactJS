@@ -1,3 +1,5 @@
+import"../App.css";
+
 const HomePage = (props) => {
     return (
         <main className="holder d-flex flex-column">

@@ -51,3 +51,5 @@ export default App;
 //Al momento  dea armar las paginas(el conteido) recordar reemplzatar los class de html por ClassName de React
 
 //Con respecto al Nav, la barra de navegacion esta conectada con el archivo App.js, Nav.js, y los archivos de las paginas Nosotros.js, Galeria.js, etc...
+
+//Dentro de un componente se puede usar "href", para redirigir una palabra a un viculo. El "Link" es mas que nada para la navegacion
