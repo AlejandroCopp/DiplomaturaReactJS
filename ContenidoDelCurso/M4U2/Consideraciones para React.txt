@@ -1,0 +1,11 @@
+Despues de la vercion v17 de node ejecutar el siguiente comando
+npm i react-scripts@5.0.1
+
+y despues :
+npm start
+
+
+
+PROPS y ESTADOS
+
+las props si se pasan como variable tienen que estar con {}

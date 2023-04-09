@@ -1,0 +1,13 @@
+Express es un framework web de node  ( es un marco de trabajo que tiene como objetivo facilitar la solución de problemas que pueden surgir al programar. )
+
+
+ejecutamos: npx express-generator --view=hbs	
+            npm i                               (para crear las carpetas)
+	    npm i nodemon 		        (dependencia para actualizar autom. el serv.)
+
+agregar en el archivo package.json en la linea "start": nodemon ./bin/www . para que cuando hago un cambio se pueda actualizar sin necesidad de reiniciar el servidor 
+
+para correr el servidor npm start, para detenerlo ctr + c en la consola
+
+regargar la pagina para actualizar los cambios
+

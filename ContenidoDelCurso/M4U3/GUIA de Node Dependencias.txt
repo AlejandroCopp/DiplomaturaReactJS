@@ -1,0 +1,37 @@
+
+
+
+Descargue el programa Node
+
+Si escribimos "node" en la terminal para ver que este instalado luego tenemos que poner .exit para salir
+ 
+Correr el codigo node Prueva.js para ejecutar un js
+
+Ejecutamos npm init (se crea un archivo .json)
+
+Las librerias de JS se pueden instalar a partir de npm
+
+se instalo npm i jquery   (son dependencias)
+	   npm i aos
+	   npm i moment
+
+lo llamo en el archivo js:
+	Const moment = require("moment");
+	moment.locale ("es");
+	console.log(
+
+podemos sacar de la siguiente pag. la "sintaxis":
+https://momentjs.com/
+
+
+
+
+Express es un framework
+
+
+
+
+
+
+
+
