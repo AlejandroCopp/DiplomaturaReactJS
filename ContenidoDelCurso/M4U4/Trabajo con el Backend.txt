@@ -1,0 +1,39 @@
+
+
+
+
+En la carpeta Backend 
+iniciamos en la consola: 	npx express-generator --view=hbs
+				npm i				(crea las carpetas)
+				npm i nodemon
+
+en la carpeta package.json cambiamos "start": nodemon /bin
+
+ponemos npm start para iniciar el servidor
+
+en el app.js definimos y cargamos el controlador:
+
+var loginRouter = require('./routes/admin/login')
+app.use("/admin/login", loginRouter)  //controlador loginRouter
+
+en la carpeta routes creamos /admin y dentro un login.js
+
+ese login.js tiene q tener la base igual al index.js que viene en el proyecto
+
+pero el      	 res.render ("admin/login",  
+  		 layout: "admin/layout"
+		 });
+
+//login.hbs  son archivos que cree en la carpeta vista/admin
+//layout.hbs
+
+
+En el login.hbs podemos copiar el contenido del layout original
+
+Copie una imagen de la carpeta front y la puse en el public del back
+
+Pasamos algunos estilos como el header, el footer y demas del app.css de la parte del front a el back
+
+cargamos el href de bootstrap y el href de cdnjs (iconos y fuentes para la pagina)
+
+y ya queda la pagina lista para hacer el body y conectada
