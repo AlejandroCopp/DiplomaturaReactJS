@@ -1,0 +1,21 @@
+<h1>{{title}}</h1>
+
+{{#if conocido}}
+<p>Hola {{nombre}} </p>
+<p>tu edad es {{edad}}</p>
+<button> <a href="/salir">Salir</a></button>
+
+{{/if}}
+
+{{#unless conocido}}                        {{!-- unless muestra si la expresion es falsa.... a menos que no tengas conocido .... --}}
+<p>No te conosco</p>                        {{!-- --}}
+<form action="/ingresar" method="post">     {{!-- el action indica quien lo va a recibir. a travez del metodo post en el app es app.post--}}
+    <label for="nombre">Ingrese su nombre:</label>
+    <input type="text" name="nombre">       {{!-- el nombre va a ser el envio --}}
+    <br>
+    <br>
+    <label for="edad">Ingrese su edad:</label>
+    <input type="text" name="edad">
+    <button>Ingresar</button>               {{!-- cuando se recibe la ruta con el app.post capturamos el dato--}}
+</form>
+{{/unless}}

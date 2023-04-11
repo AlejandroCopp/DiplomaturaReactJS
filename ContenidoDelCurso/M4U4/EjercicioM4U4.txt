@@ -1,0 +1,91 @@
+
+
+
+en la consola ejecutamos npx express-generator --view=hbs
+			npm i
+			npm i nodemon
+en package.json ponemos en start : nodemon
+			npm i express-session
+			npm start
+
+express necesita modificar el app.js
+
+traer la dependencia var session = require ("express-session")
+
+abajo del app.use(express.static(path.join(__dirname, 'public')));
+ponemos:
+  app.use(session({
+  secret: "4n24n98fsb2&",
+  resave: false,
+  saveUninitialized: true,
+}))
+
+tener de referencia la palabra public por que el codigo anterior solo debe ir en esa linea
+
+
+comentamos estas 2 lineas:
+
+// app.use('/', indexRouter);      se comentan estas 2 lineas
+// app.use('/users', usersRouter);
+
+luego debajo de los datos de session:
+
+app.get("/", function (req, res){                         //cuando reciba localhost3000
+  var conocido = Boolean(req.session.nombre);             //resta var guarda si esta o no el nombre escrito en un boolean (true o false)
+  res.render("index",{                                    //en la salida se comunica con el render index.hbs
+    title: "sesiones en Expres.js",                       // se le pasa el titulo
+    conocido:conocido,          
+    nombre: req.session.nombre,                           // se puden pueden pasar propiedades dentro de los hbs, se imprimern {{asi}}
+  })
+})
+
+
+
+
+operaciones en Handlebars  (verlas en la pagina de handlebars)
+{{#if condicion}}
+{{/if}}
+
+{{unless condicion}}        (a menos que)
+{{/unless}}
+
+{{#each people}}		(si yo tengo tales personas)
+<li>{{this}}<li>		(imprimilas en un li)
+{{/each}}
+
+
+
+en index armamos la pagina :
+
+<h1>{{title}}</h1>
+
+{{#if conocido}}
+<p>Hola {{nombre}} <a href="/salir">Salir</a></p>
+{{/if}}
+
+{{#unless conocido}}                        {{!-- a menos que no tengas conocido .... --}}
+<p>No te conosco</p>                        {{!-- --}}
+<form action="/ingresar" method="post">     {{!-- el action indica quien lo va a recibir. a travez del metodo post en el app es app.post--}}
+    <input type="text" name="nombre">       {{!-- el nombre va a ser el envio --}}
+    <button>Ingresar</button>               {{!-- cuando se recibe la ruta con el app.post capturamos el dato--}}
+</form>
+{{/unless}}
+
+
+despues nos vamos a armar el app.js
+
+
+app.post("/ingresar", function (req, res){                //funcion que se ejecuta cuando reciba una solicitud post en la ruta /ingresar
+  if (req.body.nombre) {                                  //captura el dato.... si tengo informacion en el nombre...
+    req.session.nombre = req.body.nombre                  //el contenido de nombre se guarda en la variable de session
+  }
+  res.redirect("/");                                      //redirecciona a "/" , el codigo de arriba: app.get("/", func....  
+});
+
+
+ponemos esto en app.js para destruir la session y volver al localhost3000
+
+app.get("/salir", function (req, res){                    //cuando se resiba la direccion /salir 
+  req.session.destroy();                                  //se destruye la session y redirecciona
+  res.redirect("/");
+})
