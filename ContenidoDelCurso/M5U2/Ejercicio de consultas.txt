@@ -13,3 +13,4 @@ EJERSICIO DE CONSULTAS
 12)INSERT INTO empleados VALUES (22, 'Francisco', 'Perez', 'programador', 26, 90000, 'fracisco@bignet.com')
 13)DELETE FROM empleados WHERE nombre = 'Hernan' and apellido = 'Rosso'
 14)UPDATE empleados SET salario = 90000 WHERE nombre = 'Daniel' and apellido = 'Gutierrez';
+.
