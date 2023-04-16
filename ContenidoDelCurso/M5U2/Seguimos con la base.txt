@@ -1,0 +1,65 @@
+abrimos la base
+y copiamos del archivo txt asignado en la tarea las listas
+vamos a la tabla empleados y en la solapa SQL borramos el pequeño codigo que hay ahi
+pegamos el contenido del txt en ese recuadro y ponemos continuar
+abrimos de nuevo la solapa de SQL y ahi para hacer una consulta a la base ponemos lo siguiente:
+
+select nombre,apellido,edad
+from empleados;
+
+y en la misma pagina de localhost/phpmyadmin/ mas abajo devuelve la consulta
+podemos usar WHERE nombre_de_columna operador valor:
+
+where edad > 30
+
+entonces devuelve las personas mayores a 30
+tambien se puede usar OR/AND para que se cumpla una condicion y la otra, o una condicion o la otra
+al usar estas condiciones hay que repetir la columna ej. edad = 30 or edad = 40
+
+Cuando se consulta un varchar va entre comillas "juan"
+
+con select nombre like "%a%" busca patrones, en este caso los nombres que contengan la letra "a"
+
+podemos ordenar con ORDER BY nombre_de_columna ASC/DESC y ordenamiento doble separado con coma
+podemos poner que nos muestre hasta un limite con LIMIT 5, esto muestra los primeros 5
+si ponesmo Limit 1,6 va a saltear el primero y poner los 6 siguientes
+
+INSERTAR
+insert into empleados
+values (null,"Lucas","Coppoler","Tecnico",27,190000,"lucascoppoler@gmail.com") 
+
+el null es por que el primero es el ID y se completa solo, simpre deben tener todo los campos de la tabla
+
+ELIMINAR
+DELETE FROM empleados
+WHERE nombre "Juan"
+
+ELIMINAR TABLA
+Delete from nombre_de_la_tabla
+
+ACTUALIZAR DATOS
+UPDATE nombre_de_tabla
+SET nombre_de_columna = valor
+WHERE nombre_de_columna operador valor
+
+UPDATE empleados
+SET salario = 123123123
+WHERE nombre = 'lucas'
+
+
+
+EJERSICIO DE CONSULTAS
+1) SELECT nombre, trabajo from `empleados`;
+2) SELECT nombre, edad from `empleados`;
+3) SELECT edad, nombre FROM `empleados` WHERE trabajo = 'programador';
+4) SELECT nombre FROM `empleados` WHERE edad > 30;
+5) SELECT apellido, mail FROM `empleados` WHERE nombre = 'Juan'; 
+6) SELECT nombre FROM `empleados` WHERE trabajo = 'programador' OR trabajo = 'Desarrollad';
+7) SELECT id_emp, nombre, apellido, trabajo FROM `empleados` WHERE id_emp > 15 AND id_emp < 20;
+8) SELECT nombre FROM `empleados` WHERE trabajo = 'programador' and salario < 80000;
+9)SELECT nombre FROM `empleados` WHERE trabajo = 'programador' and salario < 90000 and salario >= 75000;
+10)SELECT nombre FROM `empleados` WHERE nombre LIKE 'S%';
+11)SELECT nombre FROM `empleados` WHERE nombre LIKE '%I';
+12)INSERT INTO empleados VALUES (22, 'Francisco', 'Perez', 'programador', 26, 90000, 'fracisco@bignet.com')
+13)DELETE FROM empleados WHERE nombre = 'Hernan' and apellido = 'Rosso'
+14)UPDATE empleados SET salario = 90000 WHERE nombre = 'Daniel' and apellido = 'Gutierrez';

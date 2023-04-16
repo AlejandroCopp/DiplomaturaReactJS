@@ -1,0 +1,16 @@
+En esta clase vimos los conceptos basicos de una base de datos
+las filas, las columnas 
+y que las calves primaria son la principal de una tabla por lo gral
+la primera columna, y la clave foranea es la que relaciona otra tabla 
+con la anterior, osea en una tabla clientes la primaria es el nro de cliente
+en una talba productos la primara es el numero del producto y la foranea
+es el nro de cliente por que permite conectarla con la tabla de clientes
+
+luego instalamos wamp de la pagina oficial
+al ejecutarlo tiene que quedar en verde 
+luego entramos a el navegador elegido en la intalacion
+y entramos a localhost/phpmyadmin/ y ponemos root sin pass y entramos
+creamos la base con el nombre y utf8mb3_general_ci
+ponemos el nombre de la tabla y la cantidad de columnas
+ponemos el nombre de las columnas y el tipo, longitud
+usar varchar como tipo de dato por que el espacio que no esta ocupado lo reutiliza
