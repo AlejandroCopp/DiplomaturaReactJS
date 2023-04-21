@@ -1,0 +1,115 @@
+En esta clase empezamos a unificar los concptos y conectamos la base de datos a VS
+
+En consola instalamos las dependencias:
+npx express-generator --view=hbs
+npm i
+npm i nodemon
+
+cambiar dek Json start: nodemon
+
+nuevas dependencias:
+npm i mysql
+npm i util                     //combierte ciertas funciones en asincronicas 
+
+Nuevas librerias:
+npm i dotenv                    // para trabajar con variables de entorno
+
+para trabajar en el archivo .env hay que hacerlo con el servidor apagado (exit) y despues prenderlo
+
+en el archivo .env poner:
+MYSQL_HOST=localhost
+MYSQL_DB_NAME=ejercicio       //"nombre de la base"
+MYSQL_USER=root
+MYSQL_PASSWORD=
+
+  
+-en gral se emplea un concepto llamado MVC
+M (Modelo) hay que generarlo es la comunicacion con la base. se crea carpeta models y un bd.js con la conexion dentro
+V (Vistas) en carpeta view
+C (Controlador) en carpeta route
+
+
+crea carpeta models y un bd.js 
+
+poner en el bd.js:
+
+var mysql = require('mysql')
+var util = require ('util')
+
+var pool = mysql.createPool({
+    connectionLimit: 10,
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DB_NAME,
+});
+
+pool.query = util.promisify(pool.query);
+
+module.exports = pool;
+
+
+Se empieza a conectar la base
+
+copiamos el codigo de el archivo .env en el db.js solo para ver que todo este bien copiado haciendo doble click, despues lo borramos
+
+en el app.js ponemos el siguiente codigo debajo de morgan:
+require('dotenv').config();                                      //requiere la dependencia dotenv que conecta con .env y esta a bd.js
+var pool = require('./models/bd');
+
+
+
+arrancamos con las consultas en el archivo app.js
+
+
+// select
+
+pool.query('select * from empleados').then(function {resultados}){          //selecciona la tabla de empleados
+  console.log(resultados)
+}
+
+
+//insert                        esto es para insertar un empleado
+
+var obj = {
+  nombre: 'Laura',
+  apellido: 'Lopez',
+  trabajo: 'docente',
+  edad: 28,
+  salario: 120000,
+  mail: 'flavioa@gmial.com',
+}
+
+pool.query('insert into empleados set ?' , [obj]).then(function (resultados){
+  console.log(resultados)
+});
+
+
+
+// update
+
+var id = 29;
+var obj = {
+  nombre: 'Pablo',
+  apellido: 'Gomez',
+}
+
+pool.query('update empleados set ? where id_emp=?', [obj, id]).then(function
+  (resultados) {
+    console.log(resultados);
+  });
+
+
+
+//delete
+
+var id = 16
+pool.query('delete from empleados where id_emp=?', [id]).then(function
+  (resultados) {
+    console.log(resultados);
+  });
+
+
+
+
+ya con esto esta la base conectada y podemos hacer delete, select, update e insert desde el app.js
