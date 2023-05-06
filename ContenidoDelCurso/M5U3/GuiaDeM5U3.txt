@@ -14,7 +14,7 @@ npm i util                     //combierte ciertas funciones en asincronicas
 Nuevas librerias:
 npm i dotenv                    // para trabajar con variables de entorno
 
-para trabajar en el archivo .env hay que hacerlo con el servidor apagado (exit) y despues prenderlo
+para trabajar en el archivo .env hay que hacerlo con el servidor apagado (ctrl+c) y despues prenderlo
 
 en el archivo .env poner:
 MYSQL_HOST=localhost

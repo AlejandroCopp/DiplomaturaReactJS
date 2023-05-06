@@ -46,7 +46,7 @@ app.post("/ingresar", function (req, res){                //funcion que se ejecu
   res.redirect("/");                                      //redirecciona a "/" , el codigo de arriba 
 });
 
-app.get("/salir", function (req, res){                    //cuando se resiba la direccion /salir 
+app.get("/salir", function (req, res){                    //cuando se reciba la direccion /salir 
   req.session.destroy();                                  //se destruye la session y redirecciona
   res.redirect("/");
 })

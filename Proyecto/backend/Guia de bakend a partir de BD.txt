@@ -1,0 +1,286 @@
+
+Este archivo de guia fue creado a partir del M5U4
+donde el login ya esta empezado y tenemos previo  
+la base de datos armada
+
+Para iniciar el local host en consola ponemos:
+
+npm start
+
+cambiamos del archivo index.js el siguiente codigo
+
+          router.get('/', function(req, res, next) {
+            res.render('index', { title: 'Express' }); // se puede poner tambien res.redirect("admin/login")
+          });                                           //entonces cuando ente a el "/" que es localhost3000 va a
+          ;                                                //redireccionar a admin/login directo 
+
+a este otro 
+
+        router.get('/', function(req, res, next) {
+          res.redirect('admin/login');                 //redirecciona a admin/login directo osea que al poner localhost3000 va a admin/login
+        });                                         // borramos el express y demas por que 
+        ;                                              //cuando trabajamos con redireccionamietno no hay express
+        module.exports = router;
+
+
+cerramos el localhost con Ctrl+C para intalar las dependencias de la base de datos
+
+npm i mysql
+npm i util
+npm i dotenv   //para trabajar las variables de entorno
+npm i express-session
+npm i md5                  // encripta la contraseña 
+
+
+Se pueden ver las dependencias instaladas en  el archivo package.json
+
+vamos a phpmyadmin controlar que este el xamp abierto
+y creamos una nueba base de datos
+nombre en este caso: ACdesign y utf8_general_ci o similar
+cramos tabla usuarios
+
+armar las columnas 
+id                         num            primario           autoincrementar
+usuario                    varchar
+contraseña                 varchar
+
+en la solapa insertar vamos a cargar los datos 
+id          no ponemos nada
+usuario     Ale                   (Con mayuscula)
+contraseña  1234                  aca le ponemos que sea md5 para que encripte
+
+generar otro usuario 
+
+
+empezamos a armar el login
+vamos a login.hbs
+y vamos a buscar a la pagina de botstrap algun login ..
+el login lo termine creando yo
+importante cuando se arma con row
+poner en el css que el contenedor tenga 
+  display: flex;
+  flex-direction: column;
+para que los row se pongan uno abajo del otro 
+
+La pantalla login ya esta diseñada en html y css
+
+Es importante que el login en el form, diga 
+action="/admin/login" method="post"
+y el input del usuario tenga name="usuario"
+y el input de la contraseña name="password"
+para que despues capturarlo y compararlo con la base
+
+creamos el archivo .env con el nombre de la vase:
+        MYSQL_HOST=localhost
+        MYSQL_DB_NAME=acdesign
+        MYSQL_USER=root
+        MYSQL_PASSWORD=
+
+copiamos en app.js el siguiente codigo despues de morgan
+        require('dotenv').config();     //este proyecto va a trabajar con variables de entorno
+
+creamos la carpeta models dentro de la misma el bd.js con este codigo:
+
+          var mysql = require('mysql')
+          var util = require ('util')
+
+          var pool = mysql.createPool({
+              connectionLimit: 10,
+              host: process.env.MYSQL_HOST,
+              user: process.env.MYSQL_USER,
+              password: process.env.MYSQL_PASSWORD,
+              database: process.env.MYSQL_DB_NAME,
+          });
+
+          pool.query = util.promisify(pool.query);
+
+          module.exports = pool;
+
+todo esto lo hicimos la clase pasada en M5U3
+
+En la carpeta de modelos creamos usuariosModel.js
+ponemos el siguiente codigo
+
+
+    var pool = require('./bd'); //llamado a base de datos
+    var md5 = require ('md5'); // era algo de la encriptacion de la contraseña
+
+    async function getUserByUsernameAndPassword(user, password) {                 //es una funcion asyncronica por que no se sabe cuando se va a usar
+        try {
+            var query = 'select * from usuarios where usuario = ? and password = ? limit 1';
+            var rows = await pool.query(query, [user, md5(password)]);
+            return rows[0];
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    module.exports = { getUserByUsernameAndPassword }
+
+
+en login.js creamos esta variable para acceder a las fucniones del codigo anterior
+      var usuariosModel = require('./../../models/usuariosModel'); //nos permite acceder a las funciones que tengamos hechas con la tabla
+
+
+
+
+
+
+y luego debajo del codigo que ya hay en login.js ponemos esto:
+
+        router.post('/', async (req, res, next) => {       // a travez del post (la informacion que se esconde en el url) de localhost3000 que direcciona a admin/login
+          try {
+            var usuario = req.body.usuario; //captura la info de usuario .... lucas
+            var password = req.body.password; // captura 1234
+            var data = await usuariosModel.getUserByUsernameAndPassword(usuario, password);           //la variable data se conecta con usuariosModel que tiene todas las funciones
+            ;                                                                                         //busco la funcion getUserByUsernameAndPassword y le paso lo que esta almacenando en
+            ;                                                                                         // las variables usuario y password que obtienen la info del metodo post en '/' 
+            ;                                                                                         // la funcion getUserByUsernameAndPassword consulta la base de datos y los trae si son correctos
+            ;                                                                                         //await le da el cierre a la funcion asincronica
+            if (data != undefined) {                                  //si data es diferente a undefined .... es decir, que tengo un registro 
+              res.redirect('/admin/novedades');                       //redirecciona a admin novedades
+            } else {
+              res.render('admin/login', {                             //si no, hace un render de la pagina de nuevo 
+                layout: 'admin/layout',                               // levanta el layout, que es la base estructural de las pag. body footer header, etc.
+                error: true
+              });
+            }
+          } catch (error) {
+            console.log(error);
+          } //cierro catch
+
+        });  //cierro router.post
+
+
+en login.hbs ponermo el siguiente codigo para que si hay un error muestre el mensaje
+
+
+        {{#if error}}                                     {{!-- en el caso de error mostrar este p , despues se cierra el if--}}
+        <p>Usuario y/o contraseña incorrecto</p>
+        {{/if}}
+
+volvemos a levantar el servidor npm start y provamos el login
+
+---Ya funciona el login!---
+
+si ponemos datos de un usuario inexistente lo avisa
+si  ponemos datos de un usuario correcto nos lleva a admin/novedades pero 
+esta ruta no existe, vamos a crearla :
+
+en app.js ponemos :
+          var adminRouter = require('./routes/admin/novedades');      //hace referencia a el js
+          app.use('/admin/novedades', adminRouter);      //cuando entre al enlace /admin/novedades levanta adminRouter que a su vez levanta ./routes/admin/novedades que es el js
+fijarse bien donde va cada uno
+
+creamos en la carpeta /routes/admin el novedades.js y le ponemos el siguiente codigo 
+
+            var express = require('express');
+            var router = express.Router();
+
+            /* GET home page. */
+            router.get('/', function (req, res, next) {
+              res.render('admin/novedades', {     //novedades.hbs son archivos que cree en la carpeta vista/admin
+                layout: "admin/layout"      //layout.hbs ... al parecer se complementan los dos hbs este de layout trae la base de la pagina, es decir el header el footer el body 
+              });
+            });
+
+            module.exports = router;
+
+
+despues del js creamos el novedades.hbs en la carpeta views/admin
+y le ponemos cualquier cosa en h1 de contenido
+
+En este punto si ponemos el enlace /admin/novedades en la barra de direcciones podriamos acceder salteandonos el sistema de login
+para eso tenemos que trabajar con archivos de session
+
+vamos a app.js y creamos una variable de session:
+          var session = require ('express-session');              // esto se trabajo en la unidad 4 creo... las variables de sesion retienen una informacion a lo largo de toda la sesion 
+
+
+          app.use(session({
+            secret: 'PW2021awqyeudj',
+            cookie: { maxAge: null},
+            resave: false,
+            saveUninitialized: true
+          }))
+
+Este código es para configurar un middleware de sesión en una aplicación Express.js utilizando el paquete express-session. El lenguaje utilizado es JavaScript.
+
+secret: Esta opción es requerida y establece la clave secreta utilizada para firmar la cookie de ID de sesión. Debe ser una cadena difícil de adivinar y mantenerse en secreto.
+cookie: Esta opción establece las opciones para la cookie de sesión. En este caso, maxAge se establece en null, lo que significa que la cookie no expirará cuando se cierre el navegador. Sin embargo, esto puede ser un problema de seguridad, ya que permitiría que una sesión activa permanezca abierta indefinidamente, lo que podría permitir que un atacante tome el control de la sesión.
+resave: Esta opción controla si se debe volver a guardar la sesión en el almacén de sesiones incluso si la sesión no ha sido modificada durante la solicitud. En este caso, se establece en false, lo que significa que la sesión no se volverá a guardar a menos que se modifique durante la solicitud.
+saveUninitialized: Esta opción controla si se debe guardar una sesión sin datos. En este caso, se establece en true, lo que significa que se guardará una sesión incluso si no se ha establecido ningún dato en ella.
+
+Luego este otro:
+
+          secured = async (req, res, next) => {
+            try {
+              console.log(req.session.id_usuario);
+              if (req.session.id_usuario) {
+                next();
+              } else {
+                res.redirect('/admin/login');
+              }
+            } catch (error) {
+              console.log(error);
+            }
+          }
+
+
+Este código define una función middleware secured que se utiliza para proteger ciertas rutas o páginas en una aplicación web. La función secured verifica si existe una sesión activa y si el usuario ha iniciado sesión antes de permitir el acceso a la página solicitada.
+
+Aquí hay una explicación de lo que hace cada línea de código:
+
+secured = async (req, res, next) => { ... }: Define la función middleware secured como una función asíncrona con los parámetros req, res y next.
+console.log(req.session.id_usuario): Muestra en la consola el valor del ID de usuario almacenado en la sesión actual.
+if (req.session.id_usuario) { ... } else { ... }: Comprueba si existe un ID de usuario almacenado en la sesión actual. Si existe, la función next() se llama para continuar con el siguiente middleware o controlador de ruta. De lo contrario, el usuario es redirigido a la página de inicio de sesión.
+res.redirect('/admin/login'): Redirige al usuario a la página de inicio de sesión.
+console.log(error): Muestra en la consola cualquier error que pueda ocurrir durante la ejecución del middleware.
+
+
+agreganmos tambien en app.js que haga el secured y en base a eso el adminRouter;
+
+        app.use('/admin/novedades', secured, adminRouter);
+
+El app.use session y el sescured tiene que ir siempre mas arriba que los app.use que tienen las rutas, como el de la linea anterior por ejemplo.
+
+Luego en el login.js tenemos que capturar las variables de sesion y guardarlas agregando las siguientes lineas despues del if
+
+      req.session.id_usuario = data.id;                        //guarda en la variable de sesion, el id
+      req.session.nombre = data.usuario;                       //guarda en la variable de sesion, el usuario
+
+
+--- la ruta admin/novedades ya no es accesible sin estar logueado ! ---
+
+
+Dentro del res.render de novedades.js ponemos esta linea que genera una propiedad persona con la variable de sesion para poder despues imprimirla en el hbs
+      persona: req.session.nombre
+
+en el novedades.hbs ponemos un diseño basico que muestra el dato persona
+          
+          <div class="container" style="margin-top: 50px;">
+        {{!---fila 1 ---}}
+        <div class="row">
+            <p class="text-end">Hola {{persona}} <a class="btn btn-danger" href="">Cerrar sesion <i class= "fas fa-sign-out-alt"></i></a></p>
+        </div>
+        {{!--- fin de la fila 1 ---}}
+
+       </div>
+
+Ahora armamos el Log out que se va a manejar por el metodo get
+en novedades.hbs colocamos en el href del boton lo siguiente
+      href="/admin/login/logout"
+
+Despues vamos a hacer el controlador en login.js
+
+        router.get('/logout', function (req,res,next){
+          req.session.destroy(); //destrui la variables de sesion (id y usuario)
+          res.render('admin/login', {
+            layout: 'admin/layout'
+          });
+        })
+
+entonces asi si nosotros tocamos log out se borran los datos de sesion, por que
+si no una vez que los ingresamos y navegamos por el sitio podriamos cambiar la url y
+acceder siempre a admin/novedades 
+

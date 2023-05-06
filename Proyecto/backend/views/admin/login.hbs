@@ -1,1 +1,35 @@
-<h1>proximamente hablamos el login</h1>
+<link rel='stylesheet' href='/stylesheets/style.css' />
+
+<div class="contlogin">
+    <form action="/admin/login" method="post">
+        <div class="row">
+            <h3>Iniciar sesión</h3>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Usuario</label>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" id="inputUser" placeholder="Usuario" name="usuario">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña</label>
+            </div>
+            <div class="col">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Contraseña" name="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </form>
+
+    {{#if error}}                                     {{!-- en el caso de error mostrar este p , despues se cierra el if--}}
+    <p>Usuario y/o contraseña incorrecto</p>
+    {{/if}}
+
+</div>
