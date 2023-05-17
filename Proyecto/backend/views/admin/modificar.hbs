@@ -1,0 +1,26 @@
+<div class="container" style="margin:100px 0">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h4>Modificar la novedad</h4>
+            <form action="/admin/novedades/modificar" method="post">                                            {{! esto es lo que captura los datos}}
+                <input type="hidden" value="{{novedad.id}}" name="id">                                                  {{! Este campo es oculto por que es el que contiene el id}}                                
+                <div class="form-grup">
+                    <label for="">Titulo</label> 
+                    <input type="text" class="form-control" name="titulo" value="{{novedad.titulo}}">                   {{! en los imput añadimos el valor}}
+                </div>
+                <div class="form-grup">
+                    <label for="">Subtitulo</label> 
+                    <input type="text" class="form-control" name="subtitulo" value="{{novedad.subtitulo}}">
+                </div>
+                <div class="form-grup">
+                    <label for="">Cuerpo</label> 
+                    <textarea name="cuerpo" class="form-control">{{novedad.cuerpo}}</textarea>                         {{! en el text area el valor lo ponemos en el medio del text area}}
+                </div>
+                <button type="submit" class="btn btn-primary">Modificar</button>
+            </form>
+            {{#if error}}
+            <p>{{message}}</p>
+            {{/if}}
+        </div>
+    </div>
+</div>

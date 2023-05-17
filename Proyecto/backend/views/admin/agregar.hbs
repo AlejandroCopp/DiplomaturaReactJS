@@ -1,0 +1,24 @@
+<div class="container" style="margin:100px auto">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h4>Agregar una nueva novedad</h4>
+            <form action="/admin/novedades/agregar" method="post">                   {{! la accion es para hacer despues a travez del metodo post}}
+            <div class="mb-3 row">                                                   {{! cuando reciba router.post/agregar va a pasar algo}}
+                <input type="text" class="form-control" placeholder="Titulo" name="titulo">    {{!me voy a llevar el name del titulo}}
+            </div>
+            <div class="mb-3 row">
+                <textarea type="text" class="form-control" placeholder="Subtitulo" name="subtitulo"></textarea>    {{!me voy a llevar el name del subtitulo}}
+            </div>
+            <div class="mb-3 row">
+                <textarea type="text" class="form-control" placeholder="Cuerpo" name="cuerpo"></textarea>    {{!me voy a llevar el name del cuerpo}}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>           {{! el boton es del tipo="enviar" por mas que se un input no esta de mas aclararlo}}
+            </form>
+            {{#if error}}
+            <p>
+                {{message}}                                                                              {{!propiedad message}}
+            </p>
+            {{/if}}
+        </div>
+    </div>
+</div>
