@@ -1,5 +1,5 @@
 
-Este archivo de guia fue creado a partir del M5U4
+Este archivo de guia fue creado a partir del -----------------------------------------M5U4------------------------------------------------------------------------------------
 donde el login ya esta empezado y tenemos previo  
 la base de datos armada
 
@@ -283,4 +283,394 @@ Despues vamos a hacer el controlador en login.js
 entonces asi si nosotros tocamos log out se borran los datos de sesion, por que
 si no una vez que los ingresamos y navegamos por el sitio podriamos cambiar la url y
 acceder siempre a admin/novedades 
+
+--------------------------------------------------------------------------M6U1----------------------------------------------------------------------------------------------------------------
+
+En esta unidad vamos a hacer el listado de novedades y el alta de novedades
+
+armamos en novedades.hbs
+
+la tabla:
+
+
+    {{!---fila 3 ---}}
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Titulos</th>
+                        <th class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>1</th>
+                        <td>Titulo</td>
+                        <td class="text-end">
+                            <a class="btn btn-secondary" href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn btn-secondary" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+en la base de datos http://localhost/phpmyadmin , recordar tener prendido el xamp
+
+creamos una nueva tabla con los campos id int 11 primario tildar AI, titulo varchar 250, subtitulo text, cuerpo text 
+
+ir a la parte de insertar y cargar los datos de alguna noticia, le ponemos continuar dos veces para que despues borremos una la proxima clase
+cargar el titulo subtitulo y cuerpo de otra noticia distinta tambien la cargamos dos veces
+
+chequear que halla 4 novedades en la base 
+
+vamos a crear un nuevo modelo de las acciones contra la tabla de novedades
+dentro de models creamos el script novedadesModel.js
+
+          var pool = require ('./bd'); //llamada a la base de datos
+
+          async function getNovedades() {
+              var query = 'select * from novedades';   // trae todo de la tabla novedades
+              var rows = await pool.query(query);
+              return rows;
+          }
+
+          module.exports = {getNovedades}
+
+esta funcion vamos a trabajarla en el controlador de novedades... en routes/admin/novedades.js
+todos los controladores estan en la carpeta admin.... parece...
+
+agregar 
+        var novedadesModel = require('../../models/novedadesModel');
+
+combertir la funcion en asincronica con async como en los usuarios por que no 
+se sabe cuando se va a usar es funcion, si no node se queda pensando
+
+        router.get('/', async function (req, res, next) {
+
+dentro del res.render le pasamos novedades quedaria asi:
+
+          res.render('admin/novedades', {   
+            layout: "admin/layout",      
+            persona: req.session.nombre,
+            novedades
+          });
+        });
+
+
+Revisamos como se usa el #each en la pagina handlebarsjs.com
+
+en novedades.hbs encerramos en un #each el tr y reemplazamos el contenido estatico por el contenido de la base de datos en {{}} que es el dinamico
+
+
+    {{!---fila 3 ---}}
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr class="table-dark">
+                        <th scope="col">#</th>
+                        <th scope="col">Titulos</th>
+                        <th class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each novedades}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{titulo}}</td>
+                        <td class="text-end">
+                            <a class="btn btn-secondary" href=""><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a class="btn btn-secondary" href=""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+con esto la tabla queda dinamica, rellenada con las cosas que vimos en la base de datos
+
+ahora vamos a hacer el alta de noticias, haciendo click en el boton verde deberia aparecer en el formulario
+
+vamos a novedades.hbs y a el boton success le agregamos el href 
+
+            <a class="btn btn-success" href="/admin/novedades/agregar">
+
+la palabra agregar es la que vamos a poner despues en el controlador
+
+en novedades.js agregamos:
+
+              router.get('/agregar', (req, res, next) => {          // cuando se reciba a travez del metodo get la barra localhost3000/admin/novedades/agregar 
+                res.render('admin/agregar',{                        // traeme un render de admin con el layout
+                  layout: 'admin/layout'
+                })
+              });
+
+
+Cremos un agregar.hbs para crear la vista
+este tiene el formulario:
+
+
+            <div class="container" style="margin:100px auto">
+                <div class="row">
+                    <div class="col-6 offset-3">
+                        <h4>Agregar una nueva novedad</h4>
+                        <form action="/admin/novedades/agregar" method="post">                   {{! la accion es para hacer despues a travez del metodo post}}
+                        <div class="mb-3 row">                                                   {{! cuando reciba router.post/agregar va a pasar algo}}
+                            <input type="text" class="form-control" placeholder="Titulo" name="titulo">    {{!me voy a llevar el name del titulo}}
+                        </div>
+                        <div class="mb-3 row">
+                            <textarea type="text" class="form-control" placeholder="Subtitulo" name="subtitulo"></textarea>    {{!me voy a llevar el name del subtitulo}}
+                        </div>
+                        <div class="mb-3 row">
+                            <textarea type="text" class="form-control" placeholder="Cuerpo" name="cuerpo"></textarea>    {{!me voy a llevar el name del cuerpo}}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar</button>           {{! el boton es del tipo="enviar" por mas que se un input no esta de mas aclararlo}}
+                        </form>
+                          {{#if error}}
+                                 <p>
+                                    {{message}}                                                                              {{!propiedad message}}
+                                </p>
+                          {{/if}}
+                    </div>
+                </div>
+            </div>
+
+
+ahora hay que decirle la query cual va a ser 
+
+vamos a novedadesModel.js
+
+
+          async function insertNovedades(obj) {
+              try {
+                  var query = "insert into novedades set ?";
+                  var rows = await pool.query(query, [obj])
+                  return rows;
+
+              } catch (error) {
+                  console.log(error);
+                  throw error;
+              }
+          }
+
+module.exports = {getNovedades, insertNovedades}
+
+
+vamos a novedades.js y ponemos :
+
+
+
+                          router.post('/agregar', async (req, res, next) => {
+                            try {
+                              console.log(req.body)
+                              if (req.body.titulo != "" && req.body.subtitulo != ""  && req.body.cuerpo != "") {            //chequeo que tenga informacion en cada campo , si esta vacio 
+                                await novedadesModel.insertNovedades(req.body);                                           //comunicate con las novedades y busca la funcion de insertar y le paso los elementos req.body
+                                                                                                                          //req.body seria el objeto que tiene los datos
+                                res.redirect('/admin/novedades')                                                          // si esta todo ok redireccionamelo 
+                              } else {                                                                                    // si no, vuelve a agregar y tira el error "todos los campo son requeridos"
+                                res.render('admin/agregar', {
+                                  layout: 'admin/layout',
+                                  error: true,
+                                  message: 'Todos los campos son requeridos'
+                                })
+                              }
+                            } catch (error) {                                                                            // esto es por si hay un error al conectar con la base
+                              console.log(error)
+                              res.render('admin/agregar', {
+                                layout: 'admin/layout',
+                                error: true,
+                                message: 'No se creo la novedad'
+                              })
+                            }
+                          })
+
+
+Con esto ya deberia tener la fucion de error cuando algun campo del form esta vacio y error tambien cuando no se puede conectar con la base de datos
+
+
+
+--------------------------------------------------------------------------M6U2----------------------------------------------------------------------------------------------------------------
+
+Eliminar novedades y modificar novedades
+
+
+en novedades.hbs vamos a poner el href a el boton Eliminar dando como parametro tambien el id despues de la ruta
+entonces va a tomar el id y va a hacer la accion de eliminar en el correspondiente id
+
+                      <a class="btn btn-secondary" href="/admin/novedades/eliminar/{{id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+
+despues en novedadesModel.js  y creamos el nuevo modelo que va a interactuar con la base de datos
+
+                      
+                    async function deleteNovedadesById(id) {
+                        var query = 'delete from novedades where id = ?';
+                        var rows = await pool.query(query, [id]);
+                        return rows; 
+                    }
+
+agregamos tambien en el export la funcion 
+
+                       module.exports = {getNovedades, insertNovedades, deleteNovedadesById}
+
+el controlador (novedades.js) va a tomar el id para despues poder pasarselo a la funcion
+
+
+                  /* eliminar */
+
+                  router.get ('/eliminar/:id', async (req, res, next) => {                                      //a trevez del get por que tengo un boton, cuando reciba /eliminar/id
+                    var id = req.params.id;                                                                      // genero una variable y con req.params.id caputrp
+                    await novedadesModel.deleteNovedadesById(id);                                               //me conecto con la variable y la funcion de borrar y le paso el id
+                    res.redirect('/admin/novedades');                                                             //una vez que esta hace un redireccionamiento a novedades 
+
+                  });
+
+
+ahora vamos a hacer que el boton de modificar funcione ....
+
+                            <a class="btn btn-secondary" href="/admin/novedades/modificar/{{id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+por un lado tenemos el diseño
+la queri que necesitamos: que traiga un select todos los campos, el nombre de la tabla, y el id que sea igual al que yo mande 
+cuando apreto el boton de guardar va a ser una segunda queri 
+
+
+
+primero un diseño con la queri cargada
+
+en novedadesModel.js
+
+            async function getNovedadById(id) {
+                var query = 'select * from novedades where id = ?' ;
+                var rows = await pool.query (query, [id]);
+                return rows[0];
+            }
+
+y agregamos la funcion getNovedadById a el exports como las demas funciones
+
+
+traeme el novedades.hbs
+en novedades.js ponemos
+
+
+
+              /* la vista del form de modificar */
+
+              router.get ('/modificar/:id', async (req, res, next) => {                                           //cuando se recibe la ruta modificar/id
+                var id = req.params.id;                                                                           // traeme la variable
+                console.log(req.params.id);                                                                       //chequea que traiga el id
+                var novedad = await novedadesModel.getNovedadById(id);                                            // guarda en la variable el resultado de la funcion a la que se le paso el id
+                
+                console.log(req.params.id);                             
+                res.render('admin/modificar',{                                                                    // la nueva vista es modificar
+                  layout: 'admin/layout',                                                                          // con el layout que venimos trabajando 
+                  novedad                                                                                        // pasa novedad al render, para que lo imprima en los imput y text areas
+                })
+              })
+
+
+
+en modificar.hbs ponemos la vista de lo que seria el formulario 
+
+          <div class="container" style="margin:100px 0">
+              <div class="row">
+                  <div class="col-6 offset-3">
+                      <h4>Modificar la novedad</h4>
+                      <form action="/admin/novedades/modificar" method="post">                                            {{! esto es lo que captura los datos}}
+                          <input type="hidden" value="{{novedad.id}}" name="id">                                                  {{! Este campo es oculto por que es el que contiene el id}}                                
+                          <div class="form-grup">
+                              <label for="">Titulo</label> 
+                              <input type="text" class="form-control" name="titulo" value="{{novedad.titulo}}">                   {{! en los imput añadimos el valor}}
+                          </div>
+                          <div class="form-grup">
+                              <label for="">Subtitulo</label> 
+                              <input type="text" class="form-control" name="subtitulo" value="{{novedad.subtitulo}}">
+                          </div>
+                          <div class="form-grup">
+                              <label for="">Cuerpo</label> 
+                              <textarea name="cuerpo" class="form-control">{{novedad.cuerpo}}</textarea>                         {{! en el text area el valor lo ponemos en el medio del text area}}
+                          </div>
+                          <button type="submit" class="btn btn-primary">Modificar</button>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+
+
+cuando apreto el boton a travez del metodo post la query va a hacer el update , va a mandar lo que pasa en el titulo, en el subtitulo, en el cuerpo
+hay que hcer otra query  que va a tener que ver con el update , va a decrir "che modificame lo que yo te mande de este id"
+
+en novedadesModel.js
+            
+        async function modificarNovedadById(obj, id){                                                         // objeto por que es un array, voy a recibir titulo, subtitulo y cuerpo
+            try{
+                var query = 'update novedades set ? where id=?';                                              //modificame todos esos valores, set, 
+                var rows = await pool.query(query, [obj, id]);
+                return rows;
+            } catch (error) {
+                throw error;
+            } 
+        }
+
+y el export con la funcion anterior y esta, nos queda asi :
+
+        module.exports = {getNovedades, insertNovedades, deleteNovedadesById, getNovedadById, modificarNovedadById}
+
+Ya tenemos la nueva query y la tenemos que conectar, es decir cuando haga click en el boton moficar va a recibir /modificar a travez del metodo post y lo tiene que hacer el controlador
+
+
+
+en novedades.js
+
+            /* para modificar la novedad */
+
+            router.post('/modificar', async (req, res, next) => {                                           //cuando recibo a travez del metodo post el /modificar
+              try{
+                var obj = {                                                                                 // capturo los datos
+                  titulo: req.body.titulo,                                                                  //como hicimos en la clase de node esto de pasar los datos
+                  subtitulo: req.body.subtitulo,                                                            // y en el agregar
+                  cuerpo: req.body.cuerpo
+                }
+                console.log(obj)
+                console.log(req.body.id) 
+
+                await novedadesModel.modificarNovedadById(obj, req.body.id);                                // me voy a modificar y me paso el objeto y tambien el id
+                res.redirect('/admin/novedades');
+
+              }catch (error) {
+                console.log(error)
+                res.render('admin/modificar',{
+                  layout: 'admin/layout',
+                  error: true,
+                  message: 'No se modifico la novedad'
+                })
+              }
+            })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
