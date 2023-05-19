@@ -2,13 +2,19 @@
     <div class="row">
         <div class="col-6 offset-3">
             <h4>Agregar una nueva novedad</h4>
-            <form action="/admin/novedades/agregar" method="post">                   {{! la accion es para hacer despues a travez del metodo post}}
+            <form action="/admin/novedades/agregar" method="post"                   {{! la accion es para hacer despues a travez del metodo post}}
+                enctype="multipart/form-data">                                      {{! es una tributo, habilita que el formulario reciba un dato que no sea texto, ej imagenes, video }}
             <div class="mb-3 row">                                                   {{! cuando reciba router.post/agregar va a pasar algo}}
                 <input type="text" class="form-control" placeholder="Titulo" name="titulo">    {{!me voy a llevar el name del titulo}}
             </div>
             <div class="mb-3 row">
                 <textarea type="text" class="form-control" placeholder="Subtitulo" name="subtitulo"></textarea>    {{!me voy a llevar el name del subtitulo}}
             </div>
+
+            <div class="mb-3 row">
+                <label>Imagen: <input type="file" class="form-control" name="imagen" id="imagen" /></label>
+            </div>
+
             <div class="mb-3 row">
                 <textarea type="text" class="form-control" placeholder="Cuerpo" name="cuerpo"></textarea>    {{!me voy a llevar el name del cuerpo}}
             </div>

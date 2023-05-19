@@ -3,8 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var fileUpload = require('express-fileupload');           //para la variable de subida necesito esta dependencia 
+var cors = require ('cors');
 
-require('dotenv').config();     //este proyecto va a trabajar con variables de entorno
+
+require('dotenv').config();                         //este proyecto va a trabajar con variables de entorno
 var session = require('express-session');              // esto se trabajo en la unidad 4 creo... las variables de sesion retienen una informacion a lo largo de toda la sesion 
 ;                                                       //
 
@@ -12,6 +15,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/admin/login');   //login.js
 var adminRouter = require('./routes/admin/novedades');
+var apiRouter = require('./routes/api');
+
 var app = express();
 
 // view engine setup
@@ -45,11 +50,19 @@ secured = async (req, res, next) => {
 }
 
 
+app.use(fileUpload({                                      // como se genera la subida, como se genera ese archivo temporal
+  useTempFiles: true,                                     
+  tempFileDir: '/tmp/'
+}));
 
-app.use("/admin/login", loginRouter);  //controlador loginRouter
+
+app.use("/admin/login", loginRouter);                   //controlador loginRouter
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admin/novedades', secured, adminRouter); //cuando entre al enlace /admin/novedades levanta adminRouter que a su vez levanta ./routes/admin/novedades que es el js
+app.use('/users', usersRouter);                         //secured es para que reconozca si o si que tiene el id de la sesion 
+app.use('/admin/novedades', secured, adminRouter);       //cuando entre al enlace /admin/novedades levanta adminRouter que a su vez levanta ./routes/admin/novedades que es el js
+app.use('/api', cors(), apiRouter);                        //cors para que pueda recibir los datos
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
