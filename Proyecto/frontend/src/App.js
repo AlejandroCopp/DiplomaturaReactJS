@@ -8,6 +8,7 @@ import HomePage from './paginas/HomePage';
 import Galeria from './paginas/Galeria';
 import Nosotros from './paginas/Nosotros';
 import Contacto from './paginas/Contacto';
+import NovedadesPage from './paginas/NovedadesPage';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/Galeria" element={<Galeria />} />
           <Route path="/Contacto" element={<Contacto />} />
+          <Route path="/NovedadesPage" element={<NovedadesPage />} />
+          
         </Routes>
 
       </BrowserRouter>

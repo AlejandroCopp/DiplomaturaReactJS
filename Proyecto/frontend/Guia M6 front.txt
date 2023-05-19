@@ -1,0 +1,23 @@
+Cuando ya terminamos con el back de Novedades
+
+cramos dentro de src, componentes,novedades 
+el archivo NovedadesItem.js
+
+
+import React from 'react';
+
+const NovedadItem = (props) => {
+const { title, subtitle, imagen, body } = props;
+
+    return (
+        <div className="novedades">
+            <h1>{title}</h1>
+            <h2>{subtitle}</h2>
+            <img src={imagen} />
+            <div dangerouslySetInnerHTML={{ ___html: body }} /> <hr />
+        </div>
+    );
+}
+export default NovedadItem;
+
+
