@@ -1,3 +1,4 @@
+import"../App.css";
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -24,7 +25,7 @@ const NovedadesPage = (props) => {
     return (
 
         <section className="holder">
-            <h2>Novedades</h2>
+            <h2 class="text-center py-5 display-6">Novedades</h2>
             {
                 loading ? (
                     <p>Cargando...</p>

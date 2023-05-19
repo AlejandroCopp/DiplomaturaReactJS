@@ -6,9 +6,14 @@ const { title, subtitle, imagen, body } = props;
     return (
         <div className="novedades">
             <h1>{title}</h1>
+            <br></br>
             <h2>{subtitle}</h2>
-            <img src={imagen} />
-            <div dangerouslySetInnerHTML={{ __html: body }} /> <hr />
+            <br></br>
+            <div dangerouslySetInnerHTML={{ __html: body }} /> 
+            <br></br>
+            <img src={imagen} /><hr />
+            <br></br>
+
         </div>
     );
 }
