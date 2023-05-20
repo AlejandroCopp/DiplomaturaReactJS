@@ -4,16 +4,16 @@ const Galeria = (props) => {
     return (
         <div>
             <h2 className="text-center py-5 display-6">Galeria</h2>
-            <div class="container ">
+            <div class="container" >
                 <div class="galeria">
-                    <img src="https://picsum.photos/300/300?random=1" class="img-fluid " alt="..." />
-                    <img src="https://picsum.photos/300/300?random=2" class="img-fluid " alt="..." />
-                    <img src="https://picsum.photos/300/300?random=3" class="img-fluid " alt="..." />
-                    <img src="https://picsum.photos/300/300?random=4" class="img-fluid " alt="..." />
-                    <img src="https://picsum.photos/300/300?random=5" class="img-fluid " alt="..." />
-                    <img src="https://picsum.photos/300/300?random=6" class="img-fluid " alt="..." />
-                    <img src="https://picsum.photos/300/300?random=7" class="img-fluid " alt="..." />
-                    <img src="https://picsum.photos/300/300?random=8" class="img-fluid " alt="..." />
+                    <img src="/img/Galeria/gal1.png" class="img-fluid " alt="..." />
+                    <img src="/img/Galeria/gal2.png" class="img-fluid " alt="..." />
+                    <img src="/img/Galeria/gal3.png" class="img-fluid " alt="..." />
+                    <img src="/img/Galeria/gal4.png" class="img-fluid " alt="..." />
+                    <img src="/img/Galeria/gal5.png" class="img-fluid " alt="..." />
+                    <img src="/img/Galeria/gal6.png" class="img-fluid " alt="..." />
+                    <img src="/img/Galeria/gal7.png" class="img-fluid " alt="..." />
+                    <img src="/img/Galeria/gal8.png" class="img-fluid " alt="..." />
                 </div>
             </div>
         </div>

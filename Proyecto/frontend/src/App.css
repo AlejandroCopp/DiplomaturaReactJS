@@ -4,6 +4,16 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 20px;
+
+
+  background-image: url("/public/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+
+
+
 }
 
 header {
@@ -42,7 +52,7 @@ footer {
 }
 
 h2 {
-  color: rgb(24, 17, 61);
+  color: rgb(0, 0, 0);
 }
 
 /* --------------------NAV----------------- */
@@ -53,9 +63,12 @@ text-decoration: none;
 
 nav ul li a.activo {
   text-decoration: underline;
-  color: #000000;
+  color: #0f2857;
   
 }
+
+
+
 /* --------------------FIN DE NAV----------------- */
 
 
@@ -103,13 +116,20 @@ display: flex;
 
 .formulario p {
   display: flex;
+  color: #000000;
+
 }
 
+.datos p {
+  color: #000000;
+
+}
 
 .formulario p label {
   min-width: 90px;
   display: flex;
   align-items: center;
+
 }
 
 .formulario p input,
@@ -123,6 +143,7 @@ display: flex;
 
 .formulario p:nth-child(4){
   align-items: start;
+
 }
 
 .formulario textarea{
@@ -140,6 +161,7 @@ display: flex;
   position: relative;
   left: 90px;
   cursor: pointer;
+  margin-bottom: 555px;
 }
 
 .formulario input[type="submit"]:hover{
@@ -154,7 +176,17 @@ display: flex;
 
 
 /* --------------------HOME----------------- */
+#targfond{
+  background: rgba(247, 245, 245, 0.1);
+  
+}
 
+#cajadetargetas{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 /* --------------------FIN HOME----------------- */
 
