@@ -1,0 +1,11 @@
+Github del proyecto
+https://github.com/AlejandroCopp/DiplomaturaReactJS/tree/main/Proyecto
+
+La base de datos
+http://localhost/phpmyadmin/index.php?route=/database/export&db=acdesign
+
+El admin levantado con wamp
+http://localhost:3000/admin/novedades
+
+La pagina 
+http://localhost:3001/NovedadesPage
