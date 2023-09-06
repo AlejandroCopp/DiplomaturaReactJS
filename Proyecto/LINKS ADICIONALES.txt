@@ -9,3 +9,10 @@ http://localhost:3000/admin/novedades
 
 La pagina 
 http://localhost:3001/NovedadesPage
+
+
+para levantar la pagina hay que entrar a el visual 
+poner la terminal en la carpeta de backend y ejecutar el
+servidor local con npm start
+y abrir otra consola o terminal para ejecutar el front 
+con nmp start y despues tocar "y" 

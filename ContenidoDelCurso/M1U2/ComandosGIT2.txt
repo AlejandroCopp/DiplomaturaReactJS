@@ -2,6 +2,11 @@ PARA CONFIGURAR LA PC
 git config --global user.name "Juan Perez"
 git config --global user.email "juan.perez@ejemplo.com"
 
+
+AlejandroCopp
+coppolerlucas@gmail.com
+Mast3r0fpuppets
+
 CREAR REPOSITORIO EN LA DIRECCION ACTUAL
 git init
 
